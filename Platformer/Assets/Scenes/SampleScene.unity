@@ -1506,6 +1506,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79d8a2ee860413e4285a4c601e504769, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  direction: {x: -1, y: 1}
+  maxDistance: 2
+  speed: 5
 --- !u!95 &2106747041
 Animator:
   serializedVersion: 4
@@ -1566,7 +1569,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: fd024464ebaf6b941bdbd51ea2ff5a01, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
