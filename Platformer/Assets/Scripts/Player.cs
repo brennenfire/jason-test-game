@@ -2,13 +2,17 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    Vector2 startingPosition;
     [SerializeField] float speed = 1f;
     [SerializeField] float jumpForce = 1f;
+    [SerializeField] int maxJumps = 2;
+
+    Vector2 startingPosition;
+    int jumpsRemaining;
 
     private void Start()
     {
         startingPosition = transform.position;
+        jumpsRemaining = maxJumps;
     }
     void Update()
     {
@@ -31,10 +35,16 @@ public class Player : MonoBehaviour
             spriteRenderer.flipX = horizontal < 0;
         }
 
-        if(Input.GetButtonDown("Fire1"))
+        if(Input.GetButtonDown("Fire1") && jumpsRemaining > 0)
         {
             rigidbody2D.AddForce(Vector2.up * jumpForce);
+            jumpsRemaining--;
         }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        jumpsRemaining = maxJumps;
     }
 
     internal void ResetToStart()
