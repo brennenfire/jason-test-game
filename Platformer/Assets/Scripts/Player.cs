@@ -7,12 +7,13 @@ public class Player : MonoBehaviour
     [SerializeField] int maxJumps = 2;
     [SerializeField] Transform feet;
     [SerializeField] float downPull = 5f;
-
+    [SerializeField] float maxJumpDuration = 0.1f;
 
     Vector2 startingPosition;
     int jumpsRemaining;
     float fallTimer;
-    private void Start()
+    float jumpTimer;
+        private void Start()
     {
         startingPosition = transform.position;
         jumpsRemaining = maxJumps;
@@ -41,17 +42,24 @@ public class Player : MonoBehaviour
             spriteRenderer.flipX = horizontal < 0;
         }
 
-        if(Input.GetButtonDown("Fire1") && jumpsRemaining > 0)
+        if (Input.GetButtonDown("Fire1") && jumpsRemaining > 0)
         {
             rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpVelocity);
             jumpsRemaining--;
             fallTimer = 0;
+            jumpTimer = 0;
+        }
+        else if (Input.GetButton("Fire1") && jumpTimer <= maxJumpDuration)
+        {
+            rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpVelocity);
+            fallTimer = 0;
+            jumpTimer += Time.deltaTime;
         }
 
-        if(isGrounded)
+        if (isGrounded)
         {
             fallTimer = 0;
-            jumpsRemaining = maxJumps;
+            jumpsRemaining = maxJumps - 1;
         }
         else
         {
