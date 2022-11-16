@@ -8,12 +8,13 @@ public class Player : MonoBehaviour
     [SerializeField] Transform feet;
     [SerializeField] float downPull = 5f;
     [SerializeField] float maxJumpDuration = 0.1f;
+    [SerializeField] float cameraSize = 0f;
 
     Vector2 startingPosition;
     int jumpsRemaining;
     float fallTimer;
     float jumpTimer;
-        private void Start()
+    private void Start()
     {
         startingPosition = transform.position;
         jumpsRemaining = maxJumps;
@@ -73,5 +74,10 @@ public class Player : MonoBehaviour
     internal void ResetToStart()
     {
         transform.position = startingPosition;
+    }
+
+    void Awake()
+    {
+        Camera.main.orthographicSize = cameraSize;
     }
 }
