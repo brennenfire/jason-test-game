@@ -2033,11 +2033,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  jumpVelocity: 10
+  jumpVelocity: 8
   maxJumps: 2
   feet: {fileID: 1165161115}
   downPull: 0.5
-  maxJumpDuration: 0.1
+  maxJumpDuration: 0.2
 --- !u!95 &1083704039
 Animator:
   serializedVersion: 4
