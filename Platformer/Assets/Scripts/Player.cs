@@ -1,13 +1,19 @@
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [Header("Movement")]
     [SerializeField] float speed = 1f;
+    [SerializeField] float slipFactor;
+    [Header("Jump")]
     [SerializeField] float jumpVelocity = 1f;
     [SerializeField] int maxJumps = 2;
     [SerializeField] Transform feet;
     [SerializeField] float downPull = 5f;
     [SerializeField] float maxJumpDuration = 0.1f;
+    
 
     Vector2 startingPosition;
     int jumpsRemaining;
@@ -18,6 +24,7 @@ public class Player : MonoBehaviour
     SpriteRenderer spriteRenderer;
     float horizontal;
     bool isGrounded;
+    bool isOnSlipperySurface;
 
     void Start()
     {
@@ -31,7 +38,14 @@ public class Player : MonoBehaviour
     {
         UpdateIsGrounded();
         ReadHorizontalInput();
-        MoveHorizontal();
+        if (isOnSlipperySurface)
+        {
+            SlipHorizontal();
+        }
+        else
+        {
+            MoveHorizontal();
+        }
 
         UpdateAnimator();
         UpdateSpriteDirection();
@@ -88,11 +102,18 @@ public class Player : MonoBehaviour
 
     void MoveHorizontal()
     {
-        if (Mathf.Abs(horizontal) >= 1)
-        {
-            rigidbody2D.velocity = new Vector2(horizontal, rigidbody2D.velocity.y);
-            //Debug.Log($"Velocity = {rigidbody2D.velocity}");
-        }
+         rigidbody2D.velocity = new Vector2(horizontal * speed, rigidbody2D.velocity.y);
+    }
+
+    void SlipHorizontal()
+    {
+        var desiredVelocity = new Vector2(horizontal * speed, rigidbody2D.velocity.y);
+        var smoothedVelocity = Vector2.Lerp(
+            rigidbody2D.velocity,
+            desiredVelocity,
+            Time.deltaTime / slipFactor);
+
+        rigidbody2D.velocity = smoothedVelocity;
     }
 
     void ReadHorizontalInput()
@@ -119,6 +140,17 @@ public class Player : MonoBehaviour
     {
         var hit = Physics2D.OverlapCircle(feet.position, 0.1f, LayerMask.GetMask("Default"));
         isGrounded = hit != null;
+
+
+        //isOnSlipperySurface = hit?.CompareTag("Slippery) ?? false;
+        if (hit != null)
+        {
+            isOnSlipperySurface = hit.CompareTag("Slippery");
+        }
+        else
+        {
+            isOnSlipperySurface = false;
+        }
     }
 
     internal void ResetToStart()
