@@ -13,47 +13,36 @@ public class Player : MonoBehaviour
     int jumpsRemaining;
     float fallTimer;
     float jumpTimer;
-    private void Start()
+    new Rigidbody2D rigidbody2D;
+    Animator animator;
+    SpriteRenderer spriteRenderer;
+    float horizontal;
+    bool isGrounded;
+
+    void Start()
     {
         startingPosition = transform.position;
         jumpsRemaining = maxJumps;
+        rigidbody2D = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
     void Update()
     {
-        var hit = Physics2D.OverlapCircle(feet.position, 0.1f, LayerMask.GetMask("Default"));
-        bool isGrounded = hit != null;
+        UpdateIsGrounded();
+        ReadHorizontalInput();
+        MoveHorizontal();
 
-        var horizontal = Input.GetAxis("Horizontal") * speed;
-        var rigidbody2D = GetComponent<Rigidbody2D>();
+        UpdateAnimator();
+        UpdateSpriteDirection();
 
-        if(Mathf.Abs(horizontal) >= 1)
+        if (ShouldStartJump())
         {
-            rigidbody2D.velocity = new Vector2(horizontal, rigidbody2D.velocity.y);
-            //Debug.Log($"Velocity = {rigidbody2D.velocity}");
+            Jump();
         }
-
-        var animator = GetComponent<Animator>();
-        bool walking = horizontal != 0; // ce e codul asta ba
-        animator.SetBool("Walk", walking); // animator.SetBool("Walk", horizontal != 0);
-
-        if (horizontal != 0)
+        else if (ShouldContinueJump())
         {
-            var spriteRenderer = GetComponent<SpriteRenderer>();
-            spriteRenderer.flipX = horizontal < 0;
-        }
-
-        if (Input.GetButtonDown("Fire1") && jumpsRemaining > 0)
-        {
-            rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpVelocity);
-            jumpsRemaining--;
-            Debug.Log($"Jumps remaining: {jumpsRemaining}");
-            fallTimer = 0;
-            jumpTimer = 0;
-        }
-        else if (Input.GetButton("Fire1") && jumpTimer <= maxJumpDuration)
-        {
-            rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpVelocity);
-            fallTimer = 0;
+            ContinueJump();
         }
 
         jumpTimer += Time.deltaTime;
@@ -70,6 +59,66 @@ public class Player : MonoBehaviour
             rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, rigidbody2D.velocity.y - downForce);
         }
 
+    }
+
+    void ContinueJump()
+    {
+        rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpVelocity);
+        fallTimer = 0;
+    }
+
+    bool ShouldContinueJump()
+    {
+        return Input.GetButton("Fire1") && jumpTimer <= maxJumpDuration;
+    }
+
+    void Jump()
+    {
+        rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpVelocity);
+        jumpsRemaining--;
+        Debug.Log($"Jumps remaining: {jumpsRemaining}");
+        fallTimer = 0;
+        jumpTimer = 0;
+    }
+
+    bool ShouldStartJump()
+    {
+        return Input.GetButtonDown("Fire1") && jumpsRemaining > 0;
+    }
+
+    void MoveHorizontal()
+    {
+        if (Mathf.Abs(horizontal) >= 1)
+        {
+            rigidbody2D.velocity = new Vector2(horizontal, rigidbody2D.velocity.y);
+            //Debug.Log($"Velocity = {rigidbody2D.velocity}");
+        }
+    }
+
+    void ReadHorizontalInput()
+    {
+        horizontal = Input.GetAxis("Horizontal") * speed;
+    }
+
+    void UpdateSpriteDirection()
+    {
+        if (horizontal != 0)
+        {
+            var spriteRenderer = GetComponent<SpriteRenderer>();
+            spriteRenderer.flipX = horizontal < 0;
+        }
+    }
+
+    void UpdateAnimator()
+    {
+        bool walking = horizontal != 0;
+        animator.SetBool("Walk", walking);
+    }
+
+    void UpdateIsGrounded()
+    {
+        var hit = Physics2D.OverlapCircle(feet.position, 0.1f, LayerMask.GetMask("Default"));
+        isGrounded = hit != null;
     }
 
     internal void ResetToStart()
