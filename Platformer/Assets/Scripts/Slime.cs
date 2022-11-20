@@ -7,6 +7,7 @@ public class Slime : MonoBehaviour
 {
     [SerializeField] Transform leftSensor;
     [SerializeField] Transform rightSensor;
+    [SerializeField] Sprite deadSprite;
 
     new Rigidbody2D rigidbody2D;
     SpriteRenderer sprite;
@@ -69,7 +70,7 @@ public class Slime : MonoBehaviour
 
         if(normal.y <= -0.5)
         {
-            Die();
+            StartCoroutine(Die());
         }
         else
         {
@@ -77,8 +78,20 @@ public class Slime : MonoBehaviour
         }
     }
 
-    private void Die()
+    IEnumerator Die()
     {
-        GameObject.Destroy(gameObject);
+        sprite.sprite = deadSprite;
+        GetComponent<Animator>().enabled = false;
+        GetComponent<Collider2D>().enabled = false;
+        this.enabled = false;
+        GetComponent<Rigidbody2D>().simulated = false;
+
+        float alpha = 1;
+        while (alpha > 0)
+        {
+            yield return null;
+            alpha -= Time.deltaTime;
+            sprite.color = new Color(1, 1, 1, alpha);
+        }
     }
 }
