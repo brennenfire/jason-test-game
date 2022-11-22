@@ -25,7 +25,10 @@ public class Player : MonoBehaviour
     float horizontal;
     bool isGrounded;
     bool isOnSlipperySurface;
-    
+
+    public int PlayerNumber => playerNumber;
+    // public int PlayerNumber { get { return playerNumber; } }
+
     void Start()
     {
         startingPosition = transform.position;
