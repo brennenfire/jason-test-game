@@ -3665,7 +3665,7 @@ MonoBehaviour:
   jumpVelocity: 8
   maxJumps: 2
   feet: {fileID: 1150089354}
-  downPull: 0.5
+  downPull: 0.25
   maxJumpDuration: 0.2
 --- !u!50 &1598364640
 Rigidbody2D:
