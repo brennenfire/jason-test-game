@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] int playerNumber = 1;
     [Header("Movement")]
     [SerializeField] float speed = 1f;
     [SerializeField] float slipFactor;
@@ -13,7 +14,6 @@ public class Player : MonoBehaviour
     [SerializeField] Transform feet;
     [SerializeField] float downPull = 5f;
     [SerializeField] float maxJumpDuration = 0.1f;
-    
 
     Vector2 startingPosition;
     int jumpsRemaining;
@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
     float horizontal;
     bool isGrounded;
     bool isOnSlipperySurface;
-
+    
     void Start()
     {
         startingPosition = transform.position;
@@ -83,7 +83,7 @@ public class Player : MonoBehaviour
 
     bool ShouldContinueJump()
     {
-        return Input.GetButton("Fire1") && jumpTimer <= maxJumpDuration;
+        return Input.GetButton($"P{playerNumber}Jump") && jumpTimer <= maxJumpDuration;
     }
 
     void Jump()
@@ -97,7 +97,7 @@ public class Player : MonoBehaviour
 
     bool ShouldStartJump()
     {
-        return Input.GetButtonDown("Fire1") && jumpsRemaining > 0;
+        return Input.GetButtonDown($"P{playerNumber}Jump") && jumpsRemaining > 0;
     }
 
     void MoveHorizontal()
@@ -118,7 +118,7 @@ public class Player : MonoBehaviour
 
     void ReadHorizontalInput()
     {
-        horizontal = Input.GetAxis("Horizontal") * speed;
+        horizontal = Input.GetAxis($"P{playerNumber}Horizontal") * speed;
     }
 
     void UpdateSpriteDirection()
