@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Breakable : MonoBehaviour
@@ -20,6 +17,9 @@ public class Breakable : MonoBehaviour
 
     void TakeHit()
     {
-       gameObject.SetActive(false);
+        var particleSystem = GetComponent<ParticleSystem>();
+        particleSystem.Play();
+        GetComponent<SpriteRenderer>().enabled  = false;
+        GetComponent<BoxCollider2D>().enabled = false;
     }
 }
