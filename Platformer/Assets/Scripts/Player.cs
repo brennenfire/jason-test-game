@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -159,6 +160,12 @@ public class Player : MonoBehaviour
 
     internal void ResetToStart()
     {
-        transform.position = startingPosition;
+        rigidbody2D.position = startingPosition;
+    }
+
+    internal void TeleportTo(Vector3 position)
+    {
+        rigidbody2D.position = position;
+        rigidbody2D.velocity = Vector2.zero;
     }
 }
