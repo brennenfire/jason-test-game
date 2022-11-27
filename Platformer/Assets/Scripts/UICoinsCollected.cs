@@ -14,6 +14,6 @@ public class UICoinsCollected : MonoBehaviour
 
     void Update()
     {
-        text.text = Coin.CoinsCollected.ToString();
+        text.SetText(Coin.CoinsCollected.ToString());
     }
 }
