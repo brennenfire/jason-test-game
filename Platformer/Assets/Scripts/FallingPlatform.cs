@@ -5,14 +5,20 @@ using UnityEngine;
 
 public class FallingPlatform : MonoBehaviour
 {
+    HashSet<Player> playersInTrigger = new HashSet<Player>();
     public bool PlayerInside;
     Coroutine coroutine;
     Vector3 initialPosition;
-
-    HashSet<Player> playersInTrigger = new HashSet<Player>();
-    [SerializeField] float fallSpeed;
     bool falling;
+    float wiggleTimer;
 
+    [Tooltip("resets the wiggle timer when no players are on the platform")]
+    [SerializeField] bool resetOnEmpty = false;
+    [SerializeField] float fallSpeed = 9;
+    [Range(0.1f, 5f)] [SerializeField] float fallAfterSeconds = 3;
+    [Range(0.005f, 0.1f)] [SerializeField] float shakeX = 0.005f;
+    [Range(0.005f, 0.1f)] [SerializeField] float shakeY = 0.005f;
+    
     private void Start()
     {
         initialPosition = transform.position;
@@ -38,12 +44,12 @@ public class FallingPlatform : MonoBehaviour
         Debug.Log("Waiting to wiggle");
         yield return new WaitForSeconds(0.25f);
         Debug.Log("Wiggling");
-        float wiggleTimer = 0;
-        while (wiggleTimer < 1f)
+        //wiggleTimer = 0;
+        while (wiggleTimer < fallAfterSeconds)
         {
             
-            float randomX = UnityEngine.Random.Range(-0.05f, 0.05f);
-            float randomY = UnityEngine.Random.Range(-0.05f, 0.05f);
+            float randomX = UnityEngine.Random.Range(-shakeX, shakeX);
+            float randomY = UnityEngine.Random.Range(-shakeY, shakeY);
             transform.position = initialPosition + new Vector3(randomX, randomY);
             float randomDelay = UnityEngine.Random.Range(0.005f, 0.01f);
             yield return new WaitForSeconds(randomDelay);
@@ -87,6 +93,11 @@ public class FallingPlatform : MonoBehaviour
         {
             PlayerInside = false;
             StopCoroutine(coroutine);
+
+            if(resetOnEmpty)
+            {
+                wiggleTimer = 0f;
+            }
         }
     }
 }

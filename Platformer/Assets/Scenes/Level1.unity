@@ -9069,7 +9069,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerInside: 0
-  fallSpeed: 8
+  resetOnEmpty: 0
+  fallSpeed: 9
+  fallAfterSeconds: 1
+  shakeX: 0.0489
+  shakeY: 0.0489
 --- !u!61 &1068263381
 BoxCollider2D:
   m_ObjectHideFlags: 0
