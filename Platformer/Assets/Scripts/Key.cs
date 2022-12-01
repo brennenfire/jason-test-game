@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Key : MonoBehaviour
 {
-    [SerializeField] KeyLock keyLockType;
-    
+    //[SerializeField] KeyLock keyLockType;
+    [SerializeField] List<KeyLock> keyLockType = new List<KeyLock>();
+    int keyCount = 0;
+
     void OnTriggerEnter2D(Collider2D collision)
     {
         var player = collision.GetComponent<Player>();
@@ -17,10 +19,17 @@ public class Key : MonoBehaviour
         }
         
         var keyLock = collision.GetComponent<KeyLock>();
-        if(keyLock == keyLockType && keyLockType != null)
+        
+        if(keyLockType.Contains(keyLock) && keyLockType != null)
         {
             keyLock.Unlock();
-            Destroy(gameObject);
+            keyCount++;
+            if (keyCount == keyLockType.Count)
+            {
+                Destroy(gameObject);
+            }
         }
+        
     }
+    
 }
