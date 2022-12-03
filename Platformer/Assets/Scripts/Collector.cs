@@ -9,9 +9,12 @@ public class Collector : MonoBehaviour
 
     void Update()
     {
-        if (collectibles.Any(t => t.gameObject.activeSelf == true))
+        foreach(var collectible in collectibles) 
         {
-            return;
+            if(collectible.isActiveAndEnabled) 
+            {
+                return;
+            }
         }
 
         Debug.Log("Got all gems");
