@@ -1,12 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Collector : MonoBehaviour
 {
     [SerializeField] List<Collectible> collectibles;
+    [SerializeField] UnityEvent collectionComplete;
+    [SerializeField] SpriteRenderer openMid;
+    [SerializeField] SpriteRenderer openTop;
+
     TMP_Text remainingText;
 
     void Start()
@@ -30,7 +36,7 @@ public class Collector : MonoBehaviour
             return;
         }
 
-        Debug.Log("Got all gems");
+        collectionComplete.Invoke();
     }
 
     void OnValidate()
