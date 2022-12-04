@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Collector : MonoBehaviour
 {
-    [SerializeField] Collectible[] collectibles;
+    [SerializeField] List<Collectible> collectibles;
     TMP_Text remainingText;
 
     void Start()
@@ -31,5 +31,10 @@ public class Collector : MonoBehaviour
         }
 
         Debug.Log("Got all gems");
+    }
+
+    void OnValidate()
+    {
+        collectibles = collectibles.Distinct().ToList();
     }
 }
