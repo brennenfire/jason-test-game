@@ -10,8 +10,6 @@ public class Collector : MonoBehaviour
 {
     [SerializeField] List<Collectible> collectibles;
     [SerializeField] UnityEvent collectionComplete;
-    [SerializeField] SpriteRenderer openMid;
-    [SerializeField] SpriteRenderer openTop;
 
     TMP_Text remainingText;
 
