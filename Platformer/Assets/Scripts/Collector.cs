@@ -12,21 +12,23 @@ public class Collector : MonoBehaviour
     [SerializeField] UnityEvent collectionComplete;
 
     TMP_Text remainingText;
+    int countCollected;
+    int countRemaining;
 
     void Start()
     {
         remainingText = GetComponentInChildren<TMP_Text>();
-    }
-    void Update()
-    {
-        int countRemaining = 0;
-        foreach(var collectible in collectibles) 
+        foreach (var collectible in collectibles)
         {
-            if(collectible.isActiveAndEnabled) 
-            {
-                countRemaining++;
-            }
+            collectible.SetCollector(this);
         }
+        countRemaining = collectibles.Count - countCollected;
+        remainingText?.SetText(countRemaining.ToString());
+    }
+    public void ItemPickedUp()
+    {
+        countCollected++;
+        countRemaining = collectibles.Count - countCollected;
         remainingText?.SetText(countRemaining.ToString());
 
         if (countRemaining > 0) 
@@ -41,4 +43,5 @@ public class Collector : MonoBehaviour
     {
         collectibles = collectibles.Distinct().ToList();
     }
+
 }
