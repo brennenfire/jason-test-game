@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Collectible : MonoBehaviour
 {
-    Collector thisCollector;
+    List<Collector> collectorList = new List<Collector>();
 
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -14,10 +15,13 @@ public class Collectible : MonoBehaviour
         }
 
         gameObject.SetActive(false);
-        thisCollector.ItemPickedUp();
+        foreach (var collector in collectorList)
+        {
+            collector.ItemPickedUp();
+        }
     }
-    public void SetCollector(Collector collector)
+    public void AddCollector(Collector collector)
     {
-        thisCollector = collector;
+        collectorList.Add(collector);
     }
 }
