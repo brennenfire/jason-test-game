@@ -20,11 +20,12 @@ public class Collector : MonoBehaviour
         remainingText = GetComponentInChildren<TMP_Text>();
         foreach (var collectible in collectibles)
         {
-            collectible.AddCollector(this);
+            collectible.OnPickedUp += ItemPickedUp;
         }
         countRemaining = collectibles.Count - countCollected;
         remainingText?.SetText(countRemaining.ToString());
     }
+
     public void ItemPickedUp()
     {
         countCollected++;
