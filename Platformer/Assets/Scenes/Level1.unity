@@ -11311,7 +11311,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   usedSprite: {fileID: 21300000, guid: a272530494f731b44bf9e80c51f83cc9, type: 3}
   item: {fileID: 1966808064}
-  itemLaunchVelocity: {x: 0, y: 0}
+  itemLaunchVelocity: {x: 0, y: 4}
 --- !u!61 &1265425062
 BoxCollider2D:
   m_ObjectHideFlags: 0
