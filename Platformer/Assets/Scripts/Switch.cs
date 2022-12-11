@@ -18,28 +18,7 @@ public class Switch : MonoBehaviour
         col = GetComponent<Collider2D>();
         sprite = GetComponent<SpriteRenderer>();
     }
-    /*
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        var player = collision.collider.GetComponent<Player>();
-        var sprite = GetComponent<SpriteRenderer>();
-        if (player == null)
-        {
-            return;
-        }
-        if (collision.contacts[0].normal.x > 0)
-        {
-            sprite.sprite = rightSwitch;
-            onRight.Invoke();
-        }
-        if (collision.contacts[0].normal.x < 0)
-        {
-            sprite.sprite = leftSwitch;
-            onLeft.Invoke();
-        }
-    }
-    */
-
+   
     void OnTriggerEnter2D(Collider2D collision)
     {
         var player = collision.GetComponent<Player>();
@@ -56,13 +35,11 @@ public class Switch : MonoBehaviour
     {
         if (collision.transform.position.x < col.transform.position.x)
         {
-            Debug.Log("stanga");
             sprite.sprite = rightSwitch;
             onRight.Invoke();
         }
         if (collision.transform.position.x > col.transform.position.x)
         {
-            Debug.Log("dreapta");
             sprite.sprite = leftSwitch;
             onLeft.Invoke();
         }
