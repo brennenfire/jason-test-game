@@ -14,26 +14,34 @@ public class TriggerSwitch : MonoBehaviour
         spriteRenderer= GetComponent<SpriteRenderer>();
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerStay2D(Collider2D other)
     {
-        var player = collision.GetComponent<Player>();
+        var player = other.GetComponent<Player>();
         if (player == null) 
         {
             return;
         }
-        bool wasOnRight = collision.transform.position.x > transform.position.x;    
+        var playerRigidBody = player.GetComponent<Rigidbody2D>();
+        if(playerRigidBody == null)
+        {
+            return;
+        }
 
-        spriteRenderer.sprite = wasOnRight? left : right;
+        bool wasOnRight = other.transform.position.x > transform.position.x;
+        bool playerWalkingRight = playerRigidBody.velocity.x > 0;
+        bool playerWalkingLeft = playerRigidBody.velocity.x < 0;
 
-        /*
-        if(wasOnRight)
+        //spriteRenderer.sprite = (wasOnRight && playerWalkingRight)? right : left; // prost
+
+
+        if (wasOnRight && playerWalkingRight)
         {
             spriteRenderer.sprite = right;
         }
-        else
+        else if(!wasOnRight && playerWalkingLeft)
         {
             spriteRenderer.sprite = left;
         }
-        */
+        
     }
 }
