@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TriggerSwitch : MonoBehaviour
 {
+    [SerializeField] UnityEvent onLeft;
+    [SerializeField] UnityEvent onRight;
+
     [SerializeField] Sprite left;
     [SerializeField] Sprite right;
 
@@ -36,12 +40,32 @@ public class TriggerSwitch : MonoBehaviour
 
         if (wasOnRight && playerWalkingRight)
         {
-            spriteRenderer.sprite = right;
+            SetPosition(true);
         }
         else if(!wasOnRight && playerWalkingLeft)
         {
-            spriteRenderer.sprite = left;
+            SetPosition(left);
         }
         
+    }
+
+    void SetPosition(bool isRight)
+    {
+        
+        if (right)
+        {
+            spriteRenderer.sprite = right;
+            onRight.Invoke();
+        }
+        else
+        {
+            spriteRenderer.sprite = left;
+            onLeft.Invoke();
+        }
+    }
+
+    public void LogUsingEvent()
+    {
+        Debug.Log("Using Event");
     }
 }
