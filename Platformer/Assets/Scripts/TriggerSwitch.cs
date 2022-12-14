@@ -7,11 +7,21 @@ public class TriggerSwitch : MonoBehaviour
 {
     [SerializeField] UnityEvent onLeft;
     [SerializeField] UnityEvent onRight;
+    [SerializeField] UnityEvent onCenter;
 
     [SerializeField] Sprite left;
     [SerializeField] Sprite right;
+    [SerializeField] Sprite center;
 
     SpriteRenderer spriteRenderer;
+    ToggleDirection currentDirection;
+    
+    enum ToggleDirection
+    {
+        Left,
+        Center,
+        Right 
+    };
 
     void Start()
     {
@@ -40,27 +50,38 @@ public class TriggerSwitch : MonoBehaviour
 
         if (wasOnRight && playerWalkingRight)
         {
-            SetPosition(true);
+            SetToggleDirection(ToggleDirection.Right);
         }
         else if(!wasOnRight && playerWalkingLeft)
         {
-            SetPosition(left);
+            SetToggleDirection(ToggleDirection.Left);
         }
         
     }
 
-    void SetPosition(bool isRight)
+    void SetToggleDirection(ToggleDirection direction)
     {
-        
-        if (right)
+        if(currentDirection == direction)
         {
-            spriteRenderer.sprite = right;
-            onRight.Invoke();
+            return;
         }
-        else
+        switch (direction)
         {
-            spriteRenderer.sprite = left;
-            onLeft.Invoke();
+            case ToggleDirection.Left:
+                spriteRenderer.sprite = left;
+                onLeft.Invoke();
+                break;
+            case ToggleDirection.Center:
+                spriteRenderer.sprite = center;
+                onCenter.Invoke();
+                break;
+            case ToggleDirection.Right:
+                spriteRenderer.sprite = right;
+                onRight.Invoke();
+                break;
+            default:
+
+                break;
         }
     }
 
