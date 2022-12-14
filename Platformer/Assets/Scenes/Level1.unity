@@ -1777,7 +1777,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!251 &407152832
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -13661,7 +13661,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!251 &1639889293
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -15991,6 +15991,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b54189b858d1bc46bf0893270f412b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingDirection: 2
   onLeft:
     m_PersistentCalls:
       m_Calls:
@@ -16057,8 +16058,36 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onCenter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1639889292}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 407152831}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   left: {fileID: 21300000, guid: 0a6246a56b448ac42a744c3dbbb589d5, type: 3}
   right: {fileID: 21300000, guid: 8c7d58068c450c440b05fc4fca2fbaa4, type: 3}
+  center: {fileID: 21300000, guid: 31e91e3b5a3ae784396bc6ace7c931db, type: 3}
 --- !u!61 &2004175131
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -16126,7 +16155,7 @@ SpriteRenderer:
   m_SortingLayerID: 1835074427
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 31e91e3b5a3ae784396bc6ace7c931db, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8c7d58068c450c440b05fc4fca2fbaa4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

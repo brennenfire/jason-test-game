@@ -5,6 +5,8 @@ using UnityEngine.Events;
 
 public class TriggerSwitch : MonoBehaviour
 {
+    [SerializeField] ToggleDirection startingDirection = ToggleDirection.Center;
+
     [SerializeField] UnityEvent onLeft;
     [SerializeField] UnityEvent onRight;
     [SerializeField] UnityEvent onCenter;
@@ -25,7 +27,8 @@ public class TriggerSwitch : MonoBehaviour
 
     void Start()
     {
-        spriteRenderer= GetComponent<SpriteRenderer>();
+        //spriteRenderer= GetComponent<SpriteRenderer>();
+        SetToggleDirection(startingDirection, true);
     }
 
     void OnTriggerStay2D(Collider2D other)
@@ -59,10 +62,10 @@ public class TriggerSwitch : MonoBehaviour
         
     }
 
-    void SetToggleDirection(ToggleDirection direction)
+    void SetToggleDirection(ToggleDirection direction, bool force = false)
     {
         
-        if(currentDirection == direction)
+        if(force == false && currentDirection == direction)
         {
             return;
         }
@@ -86,8 +89,29 @@ public class TriggerSwitch : MonoBehaviour
         }
     }
 
+    void OnValidate()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        switch (startingDirection)
+        {
+            case ToggleDirection.Left:
+                spriteRenderer.sprite = left;
+                break;
+            case ToggleDirection.Center:
+                spriteRenderer.sprite = center;
+                break;
+            case ToggleDirection.Right:
+                spriteRenderer.sprite = right;
+                break;
+            default:
+                break;
+        }
+    }
+
+    
     public void LogUsingEvent()
     {
         Debug.Log("Using Event");
     }
+ 
 }
