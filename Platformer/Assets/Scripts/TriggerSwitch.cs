@@ -61,10 +61,12 @@ public class TriggerSwitch : MonoBehaviour
 
     void SetToggleDirection(ToggleDirection direction)
     {
+        
         if(currentDirection == direction)
         {
             return;
         }
+        currentDirection = direction;
         switch (direction)
         {
             case ToggleDirection.Left:
@@ -80,7 +82,6 @@ public class TriggerSwitch : MonoBehaviour
                 onRight.Invoke();
                 break;
             default:
-
                 break;
         }
     }
