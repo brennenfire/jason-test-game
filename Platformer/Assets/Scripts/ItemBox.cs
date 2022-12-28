@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class ItemBox : HittableFromBelow
 {
+    [SerializeField] GameObject itemPrefab;
     [SerializeField] GameObject item;
     [SerializeField] Vector2 itemLaunchVelocity;
     bool used;
@@ -14,9 +15,15 @@ public class ItemBox : HittableFromBelow
         }
     }
 
-    protected override bool CanUse => used == false && item != null;
+    protected override bool CanUse => used == false;
     protected override void Use()
     {
+        item = Instantiate(
+            itemPrefab,
+            transform.position + Vector3.up,
+            Quaternion.identity,
+            transform);
+
         if(item == null)
         {
             return;
