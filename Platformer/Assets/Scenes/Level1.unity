@@ -18430,6 +18430,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2820764514205899803, guid: 35a82d420924af04eb5cc9eb294ee7ca, type: 3}
+      propertyPath: downPull
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 2820764514205899804, guid: 35a82d420924af04eb5cc9eb294ee7ca, type: 3}
       propertyPath: m_Name
       value: Player1
@@ -18601,6 +18605,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4536068713795594154, guid: 1d942ca86f4d8eb4180dae7d229e2758, type: 3}
+      propertyPath: itemPrefab
+      value: 
+      objectReference: {fileID: 204223471}
     - target: {fileID: 4536068713795594155, guid: 1d942ca86f4d8eb4180dae7d229e2758, type: 3}
       propertyPath: m_Name
       value: ItemBox
