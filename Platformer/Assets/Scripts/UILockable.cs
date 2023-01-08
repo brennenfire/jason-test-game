@@ -4,6 +4,7 @@ public class UILockable : MonoBehaviour
 {
     void OnEnable()
     {
+        //PlayerPrefs.DeleteAll();
         var startButton = GetComponent<UIStartLevelButton>();
         string key = startButton.LevelName + "Unlocked";
         int unlocked = PlayerPrefs.GetInt(key);
@@ -11,5 +12,11 @@ public class UILockable : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+    }
+
+    [ContextMenu("Delete unlock prefs")]
+    public void ClearLevelUnlocked()
+    {
+        PlayerPrefs.DeleteAll();
     }
 }
