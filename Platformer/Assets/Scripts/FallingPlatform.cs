@@ -67,7 +67,7 @@ public class FallingPlatform : MonoBehaviour
         while(fallTimer < 3f)
         {
             transform.position += Vector3.down * Time.deltaTime * fallSpeed;
-            Debug.Log(transform.position);
+            //Debug.Log(transform.position);
             fallTimer += Time.deltaTime;
             yield return null;
         }
