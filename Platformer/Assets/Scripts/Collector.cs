@@ -30,7 +30,6 @@ public class Collector : MonoBehaviour
 
     public void ItemPickedUp()
     {
-        Score.Add(100);
         countCollected++;
         countRemaining = collectibles.Count - countCollected;
         remainingText?.SetText(countRemaining.ToString());

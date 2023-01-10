@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -16,4 +17,6 @@ public class UICoinsCollected : MonoBehaviour
     {
         text.SetText(Coin.CoinsCollected.ToString());
     }
+
+    
 }
