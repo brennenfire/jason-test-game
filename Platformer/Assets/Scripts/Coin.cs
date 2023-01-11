@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Coin : MonoBehaviour
 {
@@ -13,10 +14,11 @@ public class Coin : MonoBehaviour
         {
             return;
         }
-
-        gameObject.SetActive(false);
         CoinsCollected++;
         Score.Add(10);
+        GetComponent<AudioSource>().Play();
+        GetComponent<Collider2D>().enabled = false;
+        GetComponent<SpriteRenderer>().enabled = false;
         Debug.Log(CoinsCollected);
     }
 }
