@@ -2,6 +2,7 @@ using System;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -29,6 +30,7 @@ public class Player : MonoBehaviour
     string jumpButton;
     string horizontalAxis;
     int layerMask;
+    
 
     public int PlayerNumber => playerNumber;
     // public int PlayerNumber { get { return playerNumber; } }
@@ -166,7 +168,7 @@ public class Player : MonoBehaviour
 
     internal void ResetToStart()
     {
-        rigidbody2D.position = startingPosition;
+        SceneManager.LoadScene("Menu");
     }
 
     internal void TeleportTo(Vector3 position)
