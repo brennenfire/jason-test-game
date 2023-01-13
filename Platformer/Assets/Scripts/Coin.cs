@@ -6,6 +6,9 @@ using UnityEngine.Audio;
 public class Coin : MonoBehaviour
 {
     public static int CoinsCollected;
+    int index;
+
+    [SerializeField] List<AudioClip> audioList;
 
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -16,9 +19,18 @@ public class Coin : MonoBehaviour
         }
         CoinsCollected++;
         Score.Add(10);
-        GetComponent<AudioSource>().Play();
+        if(audioList.Count > 0)
+        {
+            index = Random.Range(0, audioList.Count);
+            AudioClip clip = audioList[index];
+            GetComponent<AudioSource>().PlayOneShot(clip);
+        }
+        else
+        {
+            GetComponent<AudioSource>().Play();
+        }
         GetComponent<Collider2D>().enabled = false;
         GetComponent<SpriteRenderer>().enabled = false;
-        Debug.Log(CoinsCollected);
+        //Debug.Log(CoinsCollected);
     }
 }
