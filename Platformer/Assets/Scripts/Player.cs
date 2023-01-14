@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     [SerializeField] float downPull = 5f;
     [SerializeField] float maxJumpDuration = 0.1f;
 
+    AudioSource audioSource;
     Vector2 startingPosition;
     int jumpsRemaining;
     float fallTimer;
@@ -30,7 +31,6 @@ public class Player : MonoBehaviour
     string jumpButton;
     string horizontalAxis;
     int layerMask;
-    
 
     public int PlayerNumber => playerNumber;
     // public int PlayerNumber { get { return playerNumber; } }
@@ -45,6 +45,7 @@ public class Player : MonoBehaviour
         jumpButton = $"P{playerNumber}Jump";
         horizontalAxis = $"P{playerNumber}Horizontal";
         layerMask = LayerMask.GetMask("Default");
+        audioSource = GetComponent<AudioSource>();
     }
     void Update()
     {
@@ -105,6 +106,11 @@ public class Player : MonoBehaviour
         Debug.Log($"Jumps remaining: {jumpsRemaining}");
         fallTimer = 0;
         jumpTimer = 0;
+        if(audioSource != null) 
+        {
+            audioSource.Play();
+        }
+        
     }
 
     bool ShouldStartJump()
