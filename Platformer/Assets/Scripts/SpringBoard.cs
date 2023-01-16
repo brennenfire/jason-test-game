@@ -19,6 +19,7 @@ public class SpringBoard : MonoBehaviour
         var player = collision.collider.GetComponent<Player>();
         if (player != null)
         {
+            GetComponent<AudioSource>().Play();
             var rigidbody2D = player.GetComponent<Rigidbody2D>();
             if (rigidbody2D != null)
             {
@@ -26,6 +27,7 @@ public class SpringBoard : MonoBehaviour
                 spriteRenderer.sprite = downSprite;
             }
         }
+        
     }
 
     void OnCollisionExit2D(Collision2D collision)

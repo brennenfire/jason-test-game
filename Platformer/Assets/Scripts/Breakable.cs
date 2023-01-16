@@ -19,6 +19,7 @@ public class Breakable : MonoBehaviour
     {
         var particleSystem = GetComponent<ParticleSystem>();
         particleSystem.Play();
+        GetComponent<AudioSource>().Play();
         GetComponent<SpriteRenderer>().enabled  = false;
         GetComponent<BoxCollider2D>().enabled = false;
     }

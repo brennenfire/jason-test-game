@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 public class Slime : MonoBehaviour
@@ -8,6 +9,7 @@ public class Slime : MonoBehaviour
     [SerializeField] Transform leftSensor;
     [SerializeField] Transform rightSensor;
     [SerializeField] Sprite deadSprite;
+    [SerializeField] List<AudioClip> audioList;
 
     new Rigidbody2D rigidbody2D;
     SpriteRenderer sprite;
@@ -17,6 +19,7 @@ public class Slime : MonoBehaviour
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
+        StartCoroutine(AlternateSound());
     }
 
     void Update()
@@ -34,7 +37,11 @@ public class Slime : MonoBehaviour
     void ScanSensor(Transform sensor)
     {
         Debug.DrawRay(sensor.position, Vector2.down * 0.1f, Color.red);
-        
+
+        //StartCoroutine(AlternateSound());
+        //AudioClip clip = audioList[0];
+        //GetComponent<AudioSource>().PlayOneShot(clip);
+
         rigidbody2D.velocity = new Vector2(direction, rigidbody2D.velocity.y);
         var result = Physics2D.Raycast(sensor.position, Vector2.down, 0.1f);
         if (result.collider == null)
@@ -49,6 +56,8 @@ public class Slime : MonoBehaviour
             TurnAround();
         }
     }
+
+    
 
     void TurnAround()
     {
@@ -70,6 +79,8 @@ public class Slime : MonoBehaviour
 
         if(normal.y <= -0.5)
         {
+            AudioClip clip = audioList[2];
+            GetComponent<AudioSource>().PlayOneShot(clip);
             StartCoroutine(Die());
         }
         else
@@ -80,12 +91,13 @@ public class Slime : MonoBehaviour
 
     IEnumerator Die()
     {
+        yield return new WaitForSeconds(0.1f);
         sprite.sprite = deadSprite;
         GetComponent<Animator>().enabled = false;
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
         GetComponent<Rigidbody2D>().simulated = false;
-
+        GetComponent<AudioSource>().enabled = false;
         float alpha = 1;
         while (alpha > 0)
         {
@@ -93,5 +105,20 @@ public class Slime : MonoBehaviour
             alpha -= Time.deltaTime;
             sprite.color = new Color(1, 1, 1, alpha);
         }
+        gameObject.SetActive(false);
     }
+
+    
+    IEnumerator AlternateSound()
+    {
+        float seconds = 0.5f;
+        AudioClip clip = audioList[0];
+        GetComponent<AudioSource>().PlayOneShot(clip);
+        yield return new WaitForSeconds(seconds);
+        clip = audioList[1];
+        GetComponent<AudioSource>().PlayOneShot(clip);
+        yield return new WaitForSeconds(seconds);
+        StartCoroutine(AlternateSound());
+    }
+    
 }

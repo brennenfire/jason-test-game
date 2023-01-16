@@ -13,7 +13,7 @@ public class PushButtonSwitch : MonoBehaviour
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        releasedSprite = spriteRenderer.sprite;
+        releasedSprite = spriteRenderer.sprite; 
         BecomeReleased();
 
     }
@@ -24,7 +24,6 @@ public class PushButtonSwitch : MonoBehaviour
         {
             return;
         }
-
         BecomePressed();
     }
 
@@ -32,6 +31,7 @@ public class PushButtonSwitch : MonoBehaviour
     {
         spriteRenderer.sprite = pressedSprite;
         onPressed?.Invoke();
+        GetComponent<AudioSource>().Play();
     }
 
     void OnTriggerExit2D(Collider2D collision)
