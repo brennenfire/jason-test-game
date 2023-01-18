@@ -16,7 +16,7 @@ public class Key : MonoBehaviour
         var player = collision.GetComponent<Player>();
         if(player != null)
         {
-            if(audioSource== null)
+            if(audioSource != null)
             {
                 audioSource.Play();
             }
