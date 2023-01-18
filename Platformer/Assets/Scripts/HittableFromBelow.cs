@@ -5,12 +5,14 @@ public class HittableFromBelow : MonoBehaviour
 {
     [SerializeField] protected Sprite usedSprite;
     Animator animator;
+    AudioSource audioSource;
 
     protected virtual bool CanUse => true;
 
     void Awake()
     {
-        animator = GetComponent<Animator>();    
+        animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -25,12 +27,21 @@ public class HittableFromBelow : MonoBehaviour
         }
         if (collision.contacts[0].normal.y > 0)
         {
+            PlayAudio();
             PlayAnimation();
             Use();
             if (CanUse == false)
             {
                 GetComponent<SpriteRenderer>().sprite = usedSprite;
             }
+        }
+    }
+
+    private void PlayAudio()
+    {
+        if (audioSource != null)
+        {
+            GetComponent<AudioSource>().Play();
         }
     }
 

@@ -3,6 +3,9 @@ using UnityEngine;
 public class Mushroom : MonoBehaviour
 {
     [SerializeField] float bounceVelocity = 10;
+    AudioSource audioSource;
+
+    void Awake() => audioSource = GetComponent<AudioSource>();
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -13,6 +16,10 @@ public class Mushroom : MonoBehaviour
             if (rigidbody2D != null)
             {
                 rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, bounceVelocity);
+                if(audioSource != null)
+                {
+                    audioSource.Play();
+                }
             }
         }
     }

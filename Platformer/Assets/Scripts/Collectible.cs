@@ -13,7 +13,8 @@ public class Collectible : MonoBehaviour
             return;
         }
 
-        gameObject.SetActive(false);
+        GetComponent<Collider2D>().enabled = false;
+        GetComponent<SpriteRenderer>().enabled = false;
         /*foreach (var collector in collectorList)
         {
             collector.ItemPickedUp();
@@ -26,6 +27,12 @@ public class Collectible : MonoBehaviour
         }
         */
         OnPickedUp?.Invoke();
+
+        var audioSource = GetComponent<AudioSource>();
+        if(audioSource!= null) 
+        {
+            audioSource.Play();
+        }
     }
     
 }

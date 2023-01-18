@@ -15,9 +15,13 @@ public class TriggerSwitch : MonoBehaviour
     [SerializeField] Sprite right;
     [SerializeField] Sprite center;
 
+    [SerializeField] AudioClip leftSound;
+    [SerializeField] AudioClip rightSound;
+
     SpriteRenderer spriteRenderer;
     ToggleDirection currentDirection;
-    
+    AudioSource audioSource;
+
     enum ToggleDirection
     {
         Left,
@@ -29,6 +33,8 @@ public class TriggerSwitch : MonoBehaviour
     {
         //spriteRenderer= GetComponent<SpriteRenderer>();
         SetToggleDirection(startingDirection, true);
+        audioSource = GetComponent<AudioSource>();
+
     }
 
     void OnTriggerStay2D(Collider2D other)
@@ -73,6 +79,10 @@ public class TriggerSwitch : MonoBehaviour
         switch (direction)
         {
             case ToggleDirection.Left:
+                if (audioSource != null)
+                {
+                    audioSource.PlayOneShot(leftSound);
+                }
                 spriteRenderer.sprite = left;
                 onLeft.Invoke();
                 break;
@@ -81,6 +91,10 @@ public class TriggerSwitch : MonoBehaviour
                 onCenter.Invoke();
                 break;
             case ToggleDirection.Right:
+                if (audioSource != null)
+                {
+                    audioSource.PlayOneShot(rightSound);
+                }
                 spriteRenderer.sprite = right;
                 onRight.Invoke();
                 break;
