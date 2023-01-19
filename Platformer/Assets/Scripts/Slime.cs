@@ -79,8 +79,7 @@ public class Slime : MonoBehaviour
 
         if(normal.y <= -0.5)
         {
-            AudioClip clip = audioList[2];
-            GetComponent<AudioSource>().PlayOneShot(clip);
+            PlayDeathSound();
             StartCoroutine(Die());
         }
         else
@@ -89,9 +88,10 @@ public class Slime : MonoBehaviour
         }
     }
 
+    
+
     IEnumerator Die()
     {
-        yield return new WaitForSeconds(0.1f);
         sprite.sprite = deadSprite;
         GetComponent<Animator>().enabled = false;
         GetComponent<Collider2D>().enabled = false;
@@ -105,10 +105,9 @@ public class Slime : MonoBehaviour
             alpha -= Time.deltaTime;
             sprite.color = new Color(1, 1, 1, alpha);
         }
-        gameObject.SetActive(false);
+        
     }
 
-    
     IEnumerator AlternateSound()
     {
         float seconds = 0.5f;
@@ -120,5 +119,11 @@ public class Slime : MonoBehaviour
         yield return new WaitForSeconds(seconds);
         StartCoroutine(AlternateSound());
     }
-    
+
+    void PlayDeathSound()
+    {
+        AudioClip clip = audioList[2];
+        GetComponent<AudioSource>().PlayOneShot(clip);
+    }
+
 }
