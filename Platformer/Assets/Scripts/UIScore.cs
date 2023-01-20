@@ -9,6 +9,12 @@ public class UIScore : MonoBehaviour
     {
         text = GetComponent<TMP_Text>();
         Score.OnScoreChanged += UpdateScoreText;
+        UpdateScoreText(Score.Scoree);
+    }
+
+    void OnDestroy()
+    {
+        Score.OnScoreChanged -= UpdateScoreText;
     }
 
     private void UpdateScoreText(int score)
