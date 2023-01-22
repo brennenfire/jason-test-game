@@ -586,7 +586,7 @@ InputManager:
     descriptiveName: player 2's jump
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick 1 button 4
+    positiveButton: right ctrl
     altNegativeButton: 
     altPositiveButton: 
     gravity: 3
@@ -602,7 +602,39 @@ InputManager:
     descriptiveName: player 2's jump
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: right ctrl
+    positiveButton: joystick 1 button 4
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 3
+    dead: 0.1
+    sensitivity: 3
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: P1Fire
+    descriptiveName: player 1's fire
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: f
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 3
+    dead: 0.001
+    sensitivity: 3
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: P2Fire
+    descriptiveName: player 2's fire
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: g
     altNegativeButton: 
     altPositiveButton: 
     gravity: 3

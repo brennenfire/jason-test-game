@@ -1281,8 +1281,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 348617853}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.5, y: -3.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 7.4902, y: -3.5, z: 0}
+  m_LocalScale: {x: 1.0196, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 299316953}
@@ -8645,6 +8645,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireballPrefab: {fileID: 8571992641797903936, guid: 6639783cfb01760448aec5d22c193cbf, type: 3}
+  player: {fileID: 1083704047}
+--- !u!114 &1083704047 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2820764514205899803, guid: 35a82d420924af04eb5cc9eb294ee7ca, type: 3}
+  m_PrefabInstance: {fileID: 2820764513142120189}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 569481606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1c6fdf4de2b5be43800f09529c4ff65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1103010107
 GameObject:
   m_ObjectHideFlags: 0
