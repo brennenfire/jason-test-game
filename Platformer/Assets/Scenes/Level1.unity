@@ -8646,6 +8646,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireballPrefab: {fileID: 8571992641797903936, guid: 6639783cfb01760448aec5d22c193cbf, type: 3}
   player: {fileID: 1083704047}
+  fireRate: 0.5
 --- !u!114 &1083704047 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2820764514205899803, guid: 35a82d420924af04eb5cc9eb294ee7ca, type: 3}
@@ -19684,7 +19685,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8571992641797903940, guid: 6639783cfb01760448aec5d22c193cbf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8571992641797903940, guid: 6639783cfb01760448aec5d22c193cbf, type: 3}
       propertyPath: m_LocalPosition.y
