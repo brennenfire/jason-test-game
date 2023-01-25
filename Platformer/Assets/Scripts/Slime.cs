@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 
-public class Slime : MonoBehaviour
+public class Slime : MonoBehaviour, ITakeDamage
 {
     [SerializeField] Transform leftSensor;
     [SerializeField] Transform rightSensor;
@@ -80,7 +80,7 @@ public class Slime : MonoBehaviour
         if(normal.y <= -0.5)
         {
             PlayDeathSound();
-            StartCoroutine(Die());
+            TakeDamage();
         }
         else
         {
@@ -126,4 +126,8 @@ public class Slime : MonoBehaviour
         GetComponent<AudioSource>().PlayOneShot(clip);
     }
 
+    public void TakeDamage()
+    {
+        StartCoroutine(Die());
+    }
 }

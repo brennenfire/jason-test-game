@@ -634,7 +634,7 @@ InputManager:
     descriptiveName: player 2's fire
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: g
+    positiveButton: h
     altNegativeButton: 
     altPositiveButton: 
     gravity: 3

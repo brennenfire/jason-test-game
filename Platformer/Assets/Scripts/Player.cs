@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, ITakeDamage
 {
     [SerializeField] int playerNumber = 1;
     [Header("Movement")]
@@ -181,5 +181,25 @@ public class Player : MonoBehaviour
     {
         rigidbody2D.position = position;
         rigidbody2D.velocity = Vector2.zero;
+    }
+
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        var fireball = collision.collider.GetComponent<Fireball>();
+        if (fireball != null)
+        {
+            TakeDamage();
+            Debug.Log("player hit fireball");
+        }
+        else
+        {
+            return;
+        }
+
+    }
+    public void TakeDamage()
+    {
+        ResetToStart();
     }
 }
