@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Player : MonoBehaviour, ITakeDamage
+public class Player : MonoBehaviour //ITakeDamage
 {
     [SerializeField] int playerNumber = 1;
     [Header("Movement")]
@@ -14,8 +14,11 @@ public class Player : MonoBehaviour, ITakeDamage
     [SerializeField] float jumpVelocity = 1f;
     [SerializeField] int maxJumps = 2;
     [SerializeField] Transform feet;
+    [SerializeField] Transform leftSensor;
+    [SerializeField] Transform rightSensor;
     [SerializeField] float downPull = 5f;
     [SerializeField] float maxJumpDuration = 0.1f;
+    [SerializeField] float wallSlideSpeed = 1f;
 
     AudioSource audioSource;
     Vector2 startingPosition;
@@ -31,7 +34,7 @@ public class Player : MonoBehaviour, ITakeDamage
     string jumpButton;
     string horizontalAxis;
     int layerMask;
-
+    
     public int PlayerNumber => playerNumber;
     // public int PlayerNumber { get { return playerNumber; } }
 
@@ -63,6 +66,12 @@ public class Player : MonoBehaviour, ITakeDamage
         UpdateAnimator();
         UpdateSpriteDirection();
 
+        if(ShouldSlide())
+        {
+            Slide();
+            return;
+        }
+        
         if (ShouldStartJump())
         {
             Jump();
@@ -86,6 +95,11 @@ public class Player : MonoBehaviour, ITakeDamage
             rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, rigidbody2D.velocity.y - downForce);
         }
 
+    }
+
+    void Slide()
+    {
+        rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, -wallSlideSpeed);
     }
 
     void ContinueJump()
@@ -153,6 +167,7 @@ public class Player : MonoBehaviour, ITakeDamage
         bool walking = horizontal != 0;
         animator.SetBool("Walk", walking);
         animator.SetBool("Jump", ShouldContinueJump());
+        animator.SetBool("Slide", ShouldSlide());
     }
 
     void UpdateIsGrounded()
@@ -184,6 +199,34 @@ public class Player : MonoBehaviour, ITakeDamage
     }
 
 
+    bool ShouldSlide()
+    {
+        
+        if(isGrounded) 
+        {
+            return false;
+        }
+
+        if (horizontal < 0)
+        {
+            var hit = Physics2D.OverlapCircle(leftSensor.position, 0.1f);
+            if (hit != false && hit.CompareTag("Wall")) 
+            {
+                return true;
+            }
+        }
+        if (horizontal > 0)
+        {
+            var hit = Physics2D.OverlapCircle(rightSensor.position, 0.1f);
+            if (hit != false && hit.CompareTag("Wall")) 
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /*
     void OnCollisionEnter2D(Collision2D collision)
     {
         var fireball = collision.collider.GetComponent<Fireball>();
@@ -202,4 +245,5 @@ public class Player : MonoBehaviour, ITakeDamage
     {
         ResetToStart();
     }
+    */
 }
