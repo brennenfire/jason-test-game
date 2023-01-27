@@ -239,37 +239,6 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 4292576872487486189, guid: a5c4de0050b9b784a84df7ec29ffcd84, type: 3}
   m_PrefabInstance: {fileID: 4292576872426843800}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &109530777
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 109530778}
-  m_Layer: 6
-  m_Name: RightSensor
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &109530778
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 109530777}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.49999994, y: -0.50000006, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1083704036}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &149145756
 GameObject:
   m_ObjectHideFlags: 0
@@ -6790,11 +6759,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1 &569481606 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2820764514205899804, guid: 35a82d420924af04eb5cc9eb294ee7ca, type: 3}
-  m_PrefabInstance: {fileID: 2820764513142120189}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &585958525
 GameObject:
   m_ObjectHideFlags: 0
@@ -7483,7 +7447,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 6.0041165}
+    newSize: {x: 1, y: 1.0041162}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 0
@@ -7537,7 +7501,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 1, y: 6.0041165}
+  m_Size: {x: 1, y: 1.0041162}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -7551,7 +7515,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 727483170}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13.5, y: 1, z: 0}
+  m_LocalPosition: {x: 13.5, y: -1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7563,37 +7527,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 331647119685319349, guid: 116fec63c4d52f140967a49706f297af, type: 3}
   m_PrefabInstance: {fileID: 331647120293267610}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &753023741
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 753023742}
-  m_Layer: 6
-  m_Name: LeftSensor
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &753023742
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 753023741}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.652, y: -0.50000006, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1083704036}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &753702662
 GameObject:
   m_ObjectHideFlags: 0
@@ -8836,32 +8769,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2820764514205899801, guid: 35a82d420924af04eb5cc9eb294ee7ca, type: 3}
   m_PrefabInstance: {fileID: 2820764513142120189}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1083704043
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 569481606}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6eaf547b03a3ed4093b181b94d628b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fireballPrefab: {fileID: 8571992641797903936, guid: 6639783cfb01760448aec5d22c193cbf, type: 3}
-  player: {fileID: 1083704047}
-  fireRate: 0.5
---- !u!114 &1083704047 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2820764514205899803, guid: 35a82d420924af04eb5cc9eb294ee7ca, type: 3}
-  m_PrefabInstance: {fileID: 2820764513142120189}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 569481606}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1c6fdf4de2b5be43800f09529c4ff65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1103010107
 GameObject:
   m_ObjectHideFlags: 0
@@ -19199,30 +19106,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2820764514205899803, guid: 35a82d420924af04eb5cc9eb294ee7ca, type: 3}
-      propertyPath: armLeft
-      value: 
-      objectReference: {fileID: 753023742}
-    - target: {fileID: 2820764514205899803, guid: 35a82d420924af04eb5cc9eb294ee7ca, type: 3}
-      propertyPath: leftSensor
-      value: 
-      objectReference: {fileID: 753023742}
-    - target: {fileID: 2820764514205899803, guid: 35a82d420924af04eb5cc9eb294ee7ca, type: 3}
-      propertyPath: rightSensor
-      value: 
-      objectReference: {fileID: 109530778}
-    - target: {fileID: 2820764514205899803, guid: 35a82d420924af04eb5cc9eb294ee7ca, type: 3}
-      propertyPath: wallSlideSpeed
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 2820764514205899804, guid: 35a82d420924af04eb5cc9eb294ee7ca, type: 3}
       propertyPath: m_Name
       value: Player1
       objectReference: {fileID: 0}
-    - target: {fileID: 2820764514205899806, guid: 35a82d420924af04eb5cc9eb294ee7ca, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 707c2a9dfab0eca4895d26a79663933d, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35a82d420924af04eb5cc9eb294ee7ca, type: 3}
 --- !u!1001 &2991789950549257936

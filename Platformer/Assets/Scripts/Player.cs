@@ -68,6 +68,10 @@ public class Player : MonoBehaviour //ITakeDamage
 
         if(ShouldSlide())
         {
+            if(ShouldStartJump())
+            {
+                WallJump();
+            }
             Slide();
             return;
         }
@@ -95,6 +99,11 @@ public class Player : MonoBehaviour //ITakeDamage
             rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, rigidbody2D.velocity.y - downForce);
         }
 
+    }
+
+    private void WallJump()
+    {
+        rigidbody2D.velocity = new Vector2(-horizontal * jumpVelocity, jumpVelocity * 1.5f);
     }
 
     void Slide()
@@ -134,7 +143,8 @@ public class Player : MonoBehaviour //ITakeDamage
 
     void MoveHorizontal()
     {
-         rigidbody2D.velocity = new Vector2(horizontal * speed, rigidbody2D.velocity.y);
+         float newHorizontal = Mathf.Lerp(rigidbody2D.velocity.x, horizontal * speed, Time.deltaTime);
+         rigidbody2D.velocity = new Vector2(newHorizontal, rigidbody2D.velocity.y);
     }
 
     void SlipHorizontal()
@@ -203,6 +213,11 @@ public class Player : MonoBehaviour //ITakeDamage
     {
         
         if(isGrounded) 
+        {
+            return false;
+        }
+
+        if(rigidbody2D.velocity.y > 0)
         {
             return false;
         }
