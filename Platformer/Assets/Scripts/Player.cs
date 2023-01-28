@@ -19,6 +19,10 @@ public class Player : MonoBehaviour //ITakeDamage
     [SerializeField] float downPull = 5f;
     [SerializeField] float maxJumpDuration = 0.1f;
     [SerializeField] float wallSlideSpeed = 1f;
+    [SerializeField] float acceleration = 1f;
+    [SerializeField] float deceleration = 1f;
+    [SerializeField] float airBreaking = 1f;
+    [SerializeField] float airAcceleration = 1f;
 
     AudioSource audioSource;
     Vector2 startingPosition;
@@ -34,7 +38,7 @@ public class Player : MonoBehaviour //ITakeDamage
     string jumpButton;
     string horizontalAxis;
     int layerMask;
-    
+
     public int PlayerNumber => playerNumber;
     // public int PlayerNumber { get { return playerNumber; } }
 
@@ -143,8 +147,13 @@ public class Player : MonoBehaviour //ITakeDamage
 
     void MoveHorizontal()
     {
-         float newHorizontal = Mathf.Lerp(rigidbody2D.velocity.x, horizontal * speed, Time.deltaTime);
-         rigidbody2D.velocity = new Vector2(newHorizontal, rigidbody2D.velocity.y);
+        float smoothnessMultiplier = horizontal == 0 ? deceleration : acceleration;
+        if(isGrounded == false)
+        {
+            smoothnessMultiplier = horizontal == 0 ? airBreaking : airAcceleration;
+        }
+        float newHorizontal = Mathf.Lerp(rigidbody2D.velocity.x, horizontal * speed, Time.deltaTime * smoothnessMultiplier);
+        rigidbody2D.velocity = new Vector2(newHorizontal, rigidbody2D.velocity.y);
     }
 
     void SlipHorizontal()

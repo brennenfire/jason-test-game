@@ -19675,6 +19675,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6598227949652919865, guid: fd37f79ec1782cd4c837e73079b0de7b, type: 3}
+      propertyPath: downPull
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598227949652919865, guid: fd37f79ec1782cd4c837e73079b0de7b, type: 3}
+      propertyPath: airBreaking
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598227949652919865, guid: fd37f79ec1782cd4c837e73079b0de7b, type: 3}
+      propertyPath: acceleration
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598227949652919865, guid: fd37f79ec1782cd4c837e73079b0de7b, type: 3}
+      propertyPath: deceleration
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598227949652919865, guid: fd37f79ec1782cd4c837e73079b0de7b, type: 3}
+      propertyPath: wallSlideSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598227949652919865, guid: fd37f79ec1782cd4c837e73079b0de7b, type: 3}
+      propertyPath: airAcceleration
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6598227949652919866, guid: fd37f79ec1782cd4c837e73079b0de7b, type: 3}
       propertyPath: m_Name
       value: Player2
