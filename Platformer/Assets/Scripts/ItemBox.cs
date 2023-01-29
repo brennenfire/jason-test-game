@@ -28,7 +28,6 @@ public class ItemBox : HittableFromBelow
         {
             return;
         }
-        base.Use();
         used = true;
         item.SetActive(true);
         var itemRigidbody = item.GetComponent<Rigidbody2D>();

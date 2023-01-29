@@ -14,7 +14,6 @@ public class CoinBox : HittableFromBelow
 
     protected override void Use()
     {
-        base.Use();
         remainingCoins--;
         Coin.CoinsCollected++;
     }

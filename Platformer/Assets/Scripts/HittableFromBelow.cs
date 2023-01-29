@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class HittableFromBelow : MonoBehaviour 
+public abstract class HittableFromBelow : MonoBehaviour 
 {
     [SerializeField] protected Sprite usedSprite;
     Animator animator;
@@ -53,8 +53,5 @@ public class HittableFromBelow : MonoBehaviour
         }
     }
 
-    protected virtual void Use()
-    {
-        
-    }
+    protected abstract void Use();
 }
